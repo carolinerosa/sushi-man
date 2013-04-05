@@ -19,8 +19,9 @@ public class Player extends GameObject {
 	public int height = 30;
 	
 	// intrinsic attributes
+	HashSet<GameObject> gameObjects;
 	public Side side;
-	public float x = 50;
+	public float x;
 	public float y;
 	
 	Sprite sprite;
@@ -29,7 +30,9 @@ public class Player extends GameObject {
 	
 	public Player(int canvasWidth, int canvasHeight, HashSet<GameObject> hs)
 	{	
+		this.gameObjects = hs;
 		this.y = Game.floor;
+		this.x = Game.canvasWidth / 2;
 		hs.add(this);
 		sprite = new Sprite();
 		sprite.Start(walk);
@@ -150,9 +153,8 @@ public class Player extends GameObject {
 	}
 	@Override
 	public void Die() {
-		Game.gameObjects.remove(this);
-		//Game.cemetery.add(this);
-		
+		this.gameObjects.remove(this);
+		Game.cemetery.add(this);
 	}
 
 }

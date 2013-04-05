@@ -22,9 +22,9 @@ public class Game extends View implements Runnable{
 	public int interval = 10;
 	
 	// To catch all the scene game objects and run their Update and Draw methods.
-	public static HashSet<Enemy> inimigos = new HashSet<Enemy>();
+	public HashSet<Enemy> inimigos = new HashSet<Enemy>();
 	public static HashSet<GameObject> cemetery = new HashSet<GameObject>();
-	public static HashSet<GameObject> gameObjects = new HashSet<GameObject>();
+	public HashSet<GameObject> gameObjects = new HashSet<GameObject>();
 	
 	Thread mainThread;
 	
@@ -72,7 +72,7 @@ public class Game extends View implements Runnable{
 		//thread.setPriority(Thread.NORM_PRIORITY);
 		mainThread.start();
 		
-		enemyManager = new EnemyManager(500, 2000);
+		enemyManager = new EnemyManager(500, 2000, this.inimigos);
 	}
 	
 	@Override
@@ -131,15 +131,16 @@ public class Game extends View implements Runnable{
 		// player collision verification
 		if(!inimigos.isEmpty() && gameObjects.contains(this.player))
 		{
+			
 			for(Enemy enemy : inimigos)
 			{
 				switch(this.player.Collision(enemy.getRect()))
 				{
 				case 1:
-					cemetery.add(enemy);
+					enemy.Die();
 					break;
 				case 2:
-					cemetery.add(player);
+					player.Die();
 					break;
 					
 				default:
@@ -155,7 +156,7 @@ public class Game extends View implements Runnable{
 		{
 			for(GameObject gb : cemetery)
 			{
-				gb.Die();
+				gb = null;
 			}
 		}
 		cemetery.clear();
@@ -168,20 +169,20 @@ public class Game extends View implements Runnable{
 	{
 		super.draw(canvas);
 		
-		// draw background
-		this.bg.Draw(canvas);
-		// draw player
-		if(gameObjects.contains(player)){
-		this.player.Draw(canvas);
-		}
-		
-//		if(!gameObjects.isEmpty())
-//		{
-//			for(GameObject go : gameObjects)
-//			{
-//				gb.Draw(canvas);
-//			}
+//		// draw background
+//		this.bg.Draw(canvas);
+//		// draw player
+//		if(gameObjects.contains(player)){
+//		this.player.Draw(canvas);
 //		}
+		
+		if(!gameObjects.isEmpty())
+		{
+			for(GameObject go : gameObjects)
+			{
+				go.Draw(canvas);
+			}
+		}
 		
 		// draw enemies
 		if(!inimigos.isEmpty())

@@ -1,8 +1,7 @@
 package com.game.ThauanLopes;
 
+import java.util.HashSet;
 import java.util.Random;
-
-import android.util.Log;
 
 
 public class EnemyManager {
@@ -15,10 +14,14 @@ public class EnemyManager {
 	
 	private Random random = new Random();
 	
-	public EnemyManager(int minInterval, int maxInterval)
+	private HashSet<Enemy> inimigos;
+	
+	public EnemyManager(int minInterval, int maxInterval, HashSet<Enemy> inimigos)
 	{
 		this.maxInterval = maxInterval;
 		this.minInterval = minInterval;
+		
+		this.inimigos = inimigos;
 		
 		tempEnemyInterval = random.nextFloat() * (this.maxInterval - this.minInterval) + minInterval;
 	}
@@ -38,19 +41,18 @@ public class EnemyManager {
 			switch(rndEnemy)
 			{
 			case 0:
-				enemy = new Slowest();
+				enemy = new Slowest(inimigos);
 				break;
 				
 			case 1: 
-				enemy = new Medium();
+				enemy = new Medium(inimigos);
 				break;
 				
 			case 2:
-				enemy = new Faster();
+				enemy = new Faster(inimigos);
 				break;
 			}
-			
-			
+
 			this.tempEnemyInterval = random.nextFloat() * (this.maxInterval - this.minInterval) + minInterval;
 		}
 		
