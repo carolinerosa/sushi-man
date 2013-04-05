@@ -85,8 +85,6 @@ public class Sprite
 						
 					}else
 					{
-						Log.i(this.TAG, "entrou na condição do type.LOOP");
-						
 						currentFrame = 0;	
 					}
 				}else

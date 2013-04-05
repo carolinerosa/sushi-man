@@ -16,20 +16,15 @@ public class Medium extends Enemy {
 
 	// The eccentric attributes. Change this for different instances.
 	private void Setup()
-	{
-		this.tag = "ENEMY";
-		
+	{	
 		this.xVelocity = 1.2f;
-		this.bitmapId = R.drawable.inimigo2;
 		this.width = 100;
 		this.height = 100;
-		this.initialDistancePos = this.width;
-		
-		
-		
+		this.initialDistancePos = this.width;	
 	}
-	public Medium()
+	public Medium(HashSet<Enemy> inimigos)
 	{
+		super(inimigos);
 		Setup();
 		
 		// Randomize the instantiate side
@@ -56,7 +51,7 @@ public class Medium extends Enemy {
 		this.sprite = new Sprite();
 		sprite.Start(this.walk);
 		this.sprite.turn(this.side);
-		Game.inimigos.add(this);
+		this.inimigos.add(this);
 		this.y = Game.floor;
 		
 		

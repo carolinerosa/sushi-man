@@ -4,7 +4,6 @@ import java.util.HashSet;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class Background extends GameObject
@@ -12,7 +11,7 @@ public class Background extends GameObject
 	private Bitmap mainBitmap;
 	private Rect mainRect;
 	private Rect finalRect;
-	
+	private HashSet<GameObject> go;
 	public String tag = "bg";
 	
 	public Background(Bitmap bitmap,Rect destRect, HashSet<GameObject> gbs)
@@ -21,6 +20,7 @@ public class Background extends GameObject
 		mainBitmap = bitmap;
 		finalRect = destRect;
 		gbs.add(this);
+		this.go = gbs;
 	}
 	
 	@Override 
@@ -44,9 +44,8 @@ public class Background extends GameObject
 
 	@Override
 	public void Die() {
-		Game.gameObjects.remove(this);
+		this.go.remove(this);
 		Game.cemetery.add(this);
-		
 	}
 
 	

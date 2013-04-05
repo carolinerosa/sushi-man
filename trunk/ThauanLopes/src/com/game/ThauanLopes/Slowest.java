@@ -18,17 +18,16 @@ public class Slowest extends Enemy {
 	// The eccentric attributes. Change this for different instances.
 		private void Setup()
 		{
-			this.tag = "ENEMY";
-			
 			this.xVelocity = 1f;
-			this.bitmapId = R.drawable.inimigo3;
 			this.width = 100;
 			this.height = 100;
 			this.initialDistancePos = this.width;
 		}
 
-		public Slowest()
+		public Slowest(HashSet<Enemy> inimigos)
 		{
+			super(inimigos);
+			
 			Setup();
 			
 			// Randomize the instantiate side
@@ -51,7 +50,7 @@ public class Slowest extends Enemy {
 			this.sprite = new Sprite();
 			this.sprite.Start(walk);
 			this.sprite.turn(this.side);
-			Game.inimigos.add(this);
+			this.inimigos.add(this);
 			
 			
 			Log.i("ENEMY", "INSTANCIOU INIMIGO");

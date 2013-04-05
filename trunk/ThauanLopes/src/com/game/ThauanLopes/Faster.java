@@ -1,9 +1,9 @@
 package com.game.ThauanLopes;
 
+import java.util.HashSet;
 import java.util.Random;
-import android.util.Log;
 
-import com.game.ThauanLopes.R;
+import android.util.Log;
 
 public class Faster extends Enemy {
 
@@ -19,8 +19,9 @@ public class Faster extends Enemy {
 		this.initialDistancePos = this.width;
 			
 	}
-	public Faster()
+	public Faster(HashSet<Enemy> inimigos)
 	{
+		super(inimigos);
 		Setup();
 		
 		// Randomize the instantiate side
@@ -46,7 +47,7 @@ public class Faster extends Enemy {
 		sprite.Start(this.walk);
 		this.sprite.turn(this.side);
 
-		Game.inimigos.add(this);
+		this.inimigos.add(this);
 		
 		Log.i("ENEMY", "INSTANCIOU INIMIGO");
 		

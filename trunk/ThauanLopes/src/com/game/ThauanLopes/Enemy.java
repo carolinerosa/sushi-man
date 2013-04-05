@@ -28,16 +28,16 @@ public abstract class Enemy extends GameObject {
 	// Intrinsic values
 	protected Sprite sprite;
 	
-
+	protected HashSet<Enemy> inimigos;
 	protected float x;
 	protected float y;
 
 	public int gameCanvasWidth;
 	public int gameCanvasHeight;
 
-	public Enemy()
+	public Enemy(HashSet<Enemy> inimigos)
 	{
-		
+		this.inimigos = inimigos;
 	}
 	
 	public void Update()
@@ -88,8 +88,8 @@ public abstract class Enemy extends GameObject {
 	}
 	
 	public void Die() {
-		Game.inimigos.remove(this);
-		//Game.cemetery.add(this); 
+		this.inimigos.remove(this);
+		Game.cemetery.add(this);
 	}
 
 
