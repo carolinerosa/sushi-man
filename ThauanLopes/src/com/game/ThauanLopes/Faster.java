@@ -26,6 +26,8 @@ public class Faster extends Enemy {
 		
 		// Randomize the instantiate side
 		Random random = new Random();
+		
+		// Randomize the side to be instanced.
 		int temp = random.nextInt(2);
 		if(temp == 1)
 		{
@@ -40,11 +42,12 @@ public class Faster extends Enemy {
 			this.side = side.LEFT;
 		} 
 
-
+		
 		walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 4, AnimationType.LOOP);
 		
 		this.sprite = new Sprite();
 		sprite.Start(this.walk);
+		
 		this.sprite.turn(this.side);
 
 		this.inimigos.add(this);
