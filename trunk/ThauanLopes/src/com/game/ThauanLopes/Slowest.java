@@ -27,11 +27,12 @@ public class Slowest extends Enemy {
 		public Slowest(HashSet<Enemy> inimigos)
 		{
 			super(inimigos);
-			
 			Setup();
 			
 			// Randomize the instantiate side
 			Random random = new Random();
+			
+			// Sort the side to be instanced.
 			int temp = random.nextInt(2);
 			if(temp == 1)
 			{
@@ -49,13 +50,11 @@ public class Slowest extends Enemy {
 			
 			this.sprite = new Sprite();
 			this.sprite.Start(walk);
+			
 			this.sprite.turn(this.side);
+			
 			this.inimigos.add(this);
-			
-			
+				
 			Log.i("ENEMY", "INSTANCIOU INIMIGO");
-			
 		}
-
-
 }

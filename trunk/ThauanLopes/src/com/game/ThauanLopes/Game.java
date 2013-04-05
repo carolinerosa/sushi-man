@@ -1,6 +1,7 @@
 package com.game.ThauanLopes;
 
 import java.util.HashSet;
+import java.util.concurrent.ExecutionException;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -213,8 +214,11 @@ public class Game extends View implements Runnable{
 			{
 				running = false;
 			}
-			
+			try{
+				
 			Update();
+			
+			}catch(Exception e) { }
 			
 			postInvalidate();
 		}

@@ -29,6 +29,8 @@ public class Medium extends Enemy {
 		
 		// Randomize the instantiate side
 		Random random = new Random();
+		
+		// Sort the side to be instanced.
 		int temp = random.nextInt(2);
 		if(temp == 1)
 		{
@@ -42,19 +44,14 @@ public class Medium extends Enemy {
 			this.side = side.LEFT;
 		} 
 		
-		
-		
 		walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 3, AnimationType.LOOP);
-		
-		
 		
 		this.sprite = new Sprite();
 		sprite.Start(this.walk);
+		
 		this.sprite.turn(this.side);
+		
 		this.inimigos.add(this);
-		this.y = Game.floor;
-		
-		
 		
 		Log.i("ENEMY", "INSTANCIOU INIMIGO");
 		
