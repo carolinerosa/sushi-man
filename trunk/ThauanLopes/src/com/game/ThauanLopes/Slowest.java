@@ -19,8 +19,8 @@ public class Slowest extends Enemy {
 		private void Setup()
 		{
 			this.xVelocity = 1f;
-			this.width = 100;
-			this.height = 100;
+			this.width = 40;
+			this.height = 20;
 			this.initialDistancePos = this.width;
 		}
 

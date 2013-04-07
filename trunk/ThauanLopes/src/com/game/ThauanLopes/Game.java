@@ -125,7 +125,6 @@ public class Game extends View implements Runnable{
 			for(Enemy enemy : inimigos)
 			{
 				enemy.Update();
-				
 			}
 		}
 		
@@ -138,9 +137,11 @@ public class Game extends View implements Runnable{
 				switch(this.player.Collision(enemy.getRect()))
 				{
 				case 1:
+					if(enemy != null)
 					enemy.Die();
 					break;
 				case 2:
+					if(player != null)
 					player.Die();
 					break;
 					
@@ -150,18 +151,6 @@ public class Game extends View implements Runnable{
 				}
 			}
 		}
-		
-		this.enemyManager.Update();
-		
-		if(!cemetery.isEmpty())
-		{
-			for(GameObject gb : cemetery)
-			{
-				gb = null;
-			}
-		}
-		cemetery.clear();
-		
 	}
 	
 	//Draw
@@ -170,18 +159,29 @@ public class Game extends View implements Runnable{
 	{
 		super.draw(canvas);
 		
-//		// draw background
-//		this.bg.Draw(canvas);
-//		// draw player
-//		if(gameObjects.contains(player)){
-//		this.player.Draw(canvas);
-//		}
-		
+			this.enemyManager.Update();
+			
+			if(!cemetery.isEmpty())
+			{
+				for(GameObject gb : cemetery)
+				{
+					gb.Destroy();
+					gb = null;
+				}
+			}
+			cemetery.clear();		
+				
+				
 		if(!gameObjects.isEmpty())
 		{
 			for(GameObject go : gameObjects)
 			{
-				go.Draw(canvas);
+				if(go == null)
+				{
+					//gameObjects.remove(go);
+				}else{
+					go.Draw(canvas);
+				}
 			}
 		}
 		
@@ -190,7 +190,12 @@ public class Game extends View implements Runnable{
 		{
 			for(GameObject enemy : inimigos)
 			{
-				enemy.Draw(canvas);
+				if(enemy == null)
+				{
+					
+				}else{
+					enemy.Draw(canvas);
+				}
 			}
 		}
 	}
@@ -199,7 +204,7 @@ public class Game extends View implements Runnable{
 	{
 		this.running = bool;
 	}
-	
+		
 	@Override
 	public void run() {
 		this.Start();
@@ -213,14 +218,11 @@ public class Game extends View implements Runnable{
 			catch(InterruptedException e)
 			{
 				running = false;
+				Log.i("Thread exception!", e.toString());
 			}
-			try{
-				
+			
 			Update();
-			
-			}catch(Exception e) { }
-			
-			postInvalidate();
+			postInvalidate();			
 		}
 
 	}

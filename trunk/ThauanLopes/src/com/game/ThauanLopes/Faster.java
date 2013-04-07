@@ -14,8 +14,8 @@ public class Faster extends Enemy {
 	{
 
 		this.xVelocity = 1.4f;
-		this.width = 100;
-		this.height = 100;
+		this.width = 30;
+		this.height = 40;
 		this.initialDistancePos = this.width;
 			
 	}
