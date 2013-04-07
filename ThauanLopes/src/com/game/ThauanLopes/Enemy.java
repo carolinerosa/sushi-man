@@ -88,9 +88,13 @@ public abstract class Enemy extends GameObject {
 	}
 	
 	public void Die() {
-		this.inimigos.remove(this);
+		//this.inimigos.remove(this);
 		Game.cemetery.add(this);
 	}
-
+	
+	public void Destroy()
+	{
+		this.inimigos.remove(this);
+	}
 
 }

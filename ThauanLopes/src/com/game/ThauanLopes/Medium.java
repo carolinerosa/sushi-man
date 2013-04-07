@@ -18,8 +18,8 @@ public class Medium extends Enemy {
 	private void Setup()
 	{	
 		this.xVelocity = 1.2f;
-		this.width = 100;
-		this.height = 100;
+		this.width = 30;
+		this.height = 30;
 		this.initialDistancePos = this.width;	
 	}
 	public Medium(HashSet<Enemy> inimigos)

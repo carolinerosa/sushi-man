@@ -44,9 +44,13 @@ public class Background extends GameObject
 
 	@Override
 	public void Die() {
-		this.go.remove(this);
+		//this.go.remove(this);
 		Game.cemetery.add(this);
 	}
-
+	public void Destroy()
+	{
+		this.go.remove(this);
+	}
+	
 	
 }

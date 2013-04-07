@@ -153,8 +153,13 @@ public class Player extends GameObject {
 	}
 	@Override
 	public void Die() {
-		this.gameObjects.remove(this);
+		//this.gameObjects.remove(this);
 		Game.cemetery.add(this);
+	}
+	
+	public void Destroy()
+	{
+		this.gameObjects.remove(this);
 	}
 
 }

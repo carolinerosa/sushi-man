@@ -14,4 +14,6 @@ public abstract class GameObject {
 	public abstract boolean collision(Rect fingersPos);
 	
 	public abstract void Die();
+	
+	public abstract void Destroy();
 }
