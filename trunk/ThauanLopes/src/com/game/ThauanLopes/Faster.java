@@ -6,16 +6,14 @@ import java.util.Random;
 import android.util.Log;
 
 public class Faster extends Enemy {
-
-
 	
 	// The eccentric attributes. Change this for different instances.
 	private void Setup()
 	{
 
 		this.xVelocity = 1.4f;
-		this.width = 30;
-		this.height = 40;
+		this.width = 40;
+		this.height = 42;
 		this.initialDistancePos = this.width;
 			
 	}
@@ -43,7 +41,7 @@ public class Faster extends Enemy {
 		} 
 
 		
-		walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 4, AnimationType.LOOP);
+		walk = new SpriteAnimationData(BitmapStorage.getInstance().getMetalslug_soldier(), 16, 20, AnimationType.LOOP);
 		
 		this.sprite = new Sprite();
 		sprite.Start(this.walk);

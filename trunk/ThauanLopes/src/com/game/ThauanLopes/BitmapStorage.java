@@ -40,10 +40,20 @@ public class BitmapStorage {
 		this.enemy3_walk = enemy3_walk;
 	}
 
+	
+	public Bitmap getMetalslug_soldier() {
+		return metalslug_soldier;
+	}
+
+	public void setMetalslug_soldier(Bitmap metalslug_soldier) {
+		this.metalslug_soldier = metalslug_soldier;
+	}
+
 	private Bitmap player_walk;
 	private Bitmap enemy1_walk;
 	private Bitmap enemy2_walk;
 	private Bitmap enemy3_walk;
+	private Bitmap metalslug_soldier;
 	
 	private BitmapStorage()
 	{
@@ -51,7 +61,8 @@ public class BitmapStorage {
 		this.enemy1_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.inimigo1);
 		this.enemy2_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.inimigo2);
 		this.enemy3_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.inimigo3);
-		this.player_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.personagem);	
+		this.player_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.personagem);	 
+		this.metalslug_soldier = BitmapFactory.decodeResource(Game.resources, R.drawable.rebelzombie);
 	}
 	
 	public static BitmapStorage getInstance()

@@ -8,7 +8,7 @@ public class SpriteAnimationData {
 	public Bitmap bitmap;
 	public int frameNr;
 	public AnimationType type;
-	
+
 	public SpriteAnimationData(Bitmap bitmap, int frameNr, int FPS, AnimationType type)
 	{
 		this.bitmap = bitmap;
@@ -16,4 +16,7 @@ public class SpriteAnimationData {
 		this.frameNr = frameNr;
 		this.type = type;
 	}
+	
+	
+
 }
