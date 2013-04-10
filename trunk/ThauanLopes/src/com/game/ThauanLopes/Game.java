@@ -129,21 +129,19 @@ public class Game extends View implements Runnable{
 		}
 		
 		// player collision verification
-		if(!inimigos.isEmpty() && gameObjects.contains(this.player))
+		if(!inimigos.isEmpty() && gameObjects.contains(this.player) && player.isAlive())
 		{
-			
 			for(Enemy enemy : inimigos)
 			{
 				switch(this.player.Collision(enemy.getRect()))
 				{
 				case 1:
-					if(enemy != null)
-					enemy.Die();
-					break;
+						player.Attack();
+						enemy.Die();
+						break;
 				case 2:
-					if(player != null)
-					player.Die();
-					break;
+						player.Die();
+						break;
 					
 				default:
 					
