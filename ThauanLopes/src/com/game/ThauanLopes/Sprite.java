@@ -33,7 +33,25 @@ public class Sprite
 		paint = new Paint();
 	}
 	
-	public void Start(SpriteAnimationData spriteAnimation)
+	public void Start(SpriteAnimationData spriteAnimation, Side side)
+	{
+		
+		this.frameNr = spriteAnimation.frameNr;
+		this.spriteWidth = spriteAnimation.bitmap.getWidth() / spriteAnimation.frameNr;
+		this.spriteHeight = spriteAnimation.bitmap.getHeight();
+		this.framePeriod = 1000/spriteAnimation.FPS;
+		this.currentFrame = 0;
+		this.selectRect = new Rect(0,0, spriteWidth, spriteHeight);
+		this.bitmap = spriteAnimation.bitmap;
+		this.turn(side);
+		this.type = spriteAnimation.type;
+		this.cronometro = 0;
+		this.currentFrame = 0;
+		
+		this.finished = false;
+		
+	}
+	public void ChangeSprite(SpriteAnimationData spriteAnimation, Side side)
 	{
 		this.frameNr = spriteAnimation.frameNr;
 		this.spriteWidth = spriteAnimation.bitmap.getWidth() / spriteAnimation.frameNr;
@@ -42,23 +60,7 @@ public class Sprite
 		this.currentFrame = 0;
 		this.selectRect = new Rect(0,0, spriteWidth, spriteHeight);
 		this.bitmap = spriteAnimation.bitmap;
-		this.type = spriteAnimation.type;
-		
-		this.cronometro = 0;
-		this.currentFrame = 0;
-		
-		this.finished = false;
-		
-	}
-	public void ChangeSprite(SpriteAnimationData spriteAnimation)
-	{
-		this.spriteWidth = spriteAnimation.bitmap.getWidth() / spriteAnimation.frameNr;
-		this.spriteHeight = spriteAnimation.bitmap.getHeight();
-		this.frameNr = spriteAnimation.frameNr;
-		this.framePeriod = 1000/spriteAnimation.FPS;
-		this.currentFrame = 0;
-		this.selectRect = new Rect(0,0, spriteWidth / frameNr, spriteHeight);
-		this.bitmap = spriteAnimation.bitmap;
+		this.turn(side);
 		this.type = spriteAnimation.type;
 		
 		this.cronometro = 0;
@@ -108,17 +110,12 @@ public class Sprite
 	}
 	public boolean isFinished()
 	{
-		if(currentFrame == 0)
-		{
-			return true;
-		}else
-		{
-			return false;
-		}
+		return finished;
 	}
 	public void onSpriteAnimationFinished()
 	{
 		finished = true;
+		
 	}
 	
 	public void turn(Side side)

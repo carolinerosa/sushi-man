@@ -47,9 +47,8 @@ public class Medium extends Enemy {
 		walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 3, AnimationType.LOOP);
 		
 		this.sprite = new Sprite();
-		sprite.Start(this.walk);
-		
-		this.sprite.turn(this.side);
+		sprite.Start(this.walk, this.side);
+
 		
 		this.inimigos.add(this);
 		

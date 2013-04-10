@@ -49,7 +49,7 @@ public class Slowest extends Enemy {
 			walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy3_walk(), 3, 2, AnimationType.LOOP);			
 			
 			this.sprite = new Sprite();
-			this.sprite.Start(walk);
+			this.sprite.Start(walk, this.side);
 			
 			this.sprite.turn(this.side);
 			

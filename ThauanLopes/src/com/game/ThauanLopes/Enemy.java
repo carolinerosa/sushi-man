@@ -10,9 +10,6 @@ public abstract class Enemy extends GameObject {
 
 	// Extrinsic values
 	protected float xVelocity;
-	
-	protected int bitmapId;
-	
 	protected Side side;
 	
 	protected int width;
@@ -59,7 +56,7 @@ public abstract class Enemy extends GameObject {
 	
 	public void ChangeSprite(SpriteAnimationData data)
 	{
-		this.sprite.ChangeSprite(data);
+		this.sprite.ChangeSprite(data, this.side);
 	}
 	public void SetPotsition(float x, float y)
 	{

@@ -41,10 +41,10 @@ public class Faster extends Enemy {
 		} 
 
 		
-		walk = new SpriteAnimationData(BitmapStorage.getInstance().getMetalslug_soldier(), 16, 20, AnimationType.LOOP);
+		walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.LOOP);
 		
 		this.sprite = new Sprite();
-		sprite.Start(this.walk);
+		sprite.Start(this.walk, this.side);
 		
 		this.sprite.turn(this.side);
 
