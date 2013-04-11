@@ -41,6 +41,7 @@ public class Player extends GameObject {
 		side = side.RIGHT;
 		this.Turn();	
 	}
+	
 	public void Update()
 	{
 		//Log.i("Player", "update");
@@ -57,7 +58,7 @@ public class Player extends GameObject {
 			
 			case ATTACKING:
 				this.sprite.ChangeSprite(walk, this.side);
-				
+				this.playerState = playerState.WALKING;
 				break;
 			}
 		}
@@ -109,8 +110,27 @@ public class Player extends GameObject {
 	public void Draw(Canvas canvas)
 	{
 		
-		Rect r = new Rect ((int)x, Game.floor - this.height, (int)(x + this.width), Game.floor);
+		Rect r = null;
+		switch(this.playerState){
+		
+		case WALKING:
+			r = new Rect ((int)x, Game.floor - this.height, (int)(x + this.width), Game.floor);
+		break;
+		
+		case ATTACKING:
+			switch(this.side){
+				case LEFT:
+					r  = new Rect ((int)x - this.width , Game.floor - this.height, (int)(x + this.width), Game.floor);
+				break;
+				case RIGHT:
+					r = new Rect ((int)x, Game.floor - this.height, (int)(x + 2*this.width), Game.floor);
+	
+				break;
+			}
+			break;
+		}
 		sprite.Draw(canvas,r);
+		
 	}
 	@Override
 	public boolean collision(Rect enemyRect) {

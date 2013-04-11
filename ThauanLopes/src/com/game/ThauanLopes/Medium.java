@@ -20,36 +20,21 @@ public class Medium extends Enemy {
 		this.xVelocity = 1.2f;
 		this.width = 30;
 		this.height = 30;
-		this.initialDistancePos = this.width;	
+		this.initialDistancePos = this.width;
+		this.walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 5, AnimationType.LOOP);
+		this.attack = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 5, AnimationType.ONCE);
+		this.die = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy3_walk(), 3, 5, AnimationType.ONCE);
 	}
 	public Medium(HashSet<Enemy> inimigos)
 	{
 		super(inimigos);
 		Setup();
 		
-		// Randomize the instantiate side
-		Random random = new Random();
-		
-		// Sort the side to be instanced.
-		int temp = random.nextInt(2);
-		if(temp == 1)
-		{
-			this.x = 0 - this.initialDistancePos;
-			this.side = side.RIGHT;
-		}
-		else 
-		{ 
-			this.x = Game.canvasWidth + this.initialDistancePos;
-			xVelocity = -xVelocity;
-			this.side = side.LEFT;
-		} 
-		
-		walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 3, AnimationType.LOOP);
-		
+		RandomizeSide();
+
 		this.sprite = new Sprite();
 		sprite.Start(this.walk, this.side);
 
-		
 		this.inimigos.add(this);
 		
 		Log.i("ENEMY", "INSTANCIOU INIMIGO");
