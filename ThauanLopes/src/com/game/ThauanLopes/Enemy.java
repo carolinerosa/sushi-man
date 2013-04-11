@@ -15,24 +15,19 @@ public abstract class Enemy extends GameObject {
 	
 	protected int width;
 	protected int height;
-	
-	protected int initialDistancePos;
-	
-	protected int frameNr;
-	protected int FPS;
 
 	protected SpriteAnimationData walk;
 	protected SpriteAnimationData attack;
 	protected SpriteAnimationData die;
 	// Intrinsic values
 	protected Sprite sprite;
-	
+
 	protected EnemyState enemyState;
 	
 	protected HashSet<Enemy> inimigos;
 	protected float x;
 	protected float y;
-
+	protected int initialDistancePos;
 	public int gameCanvasWidth;
 	public int gameCanvasHeight;
 

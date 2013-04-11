@@ -177,12 +177,8 @@ public class Game extends View implements Runnable{
 		{
 			for(GameObject go : gameObjects)
 			{
-				if(go == null)
-				{
-					//gameObjects.remove(go);
-				}else{
-					go.Draw(canvas);
-				}
+				go.Draw(canvas);
+				
 			}
 		}
 		
@@ -191,12 +187,8 @@ public class Game extends View implements Runnable{
 		{
 			for(GameObject enemy : inimigos)
 			{
-				if(enemy == null)
-				{
-					
-				}else{
-					enemy.Draw(canvas);
-				}
+				enemy.Draw(canvas);
+				
 			}
 		}
 	}
