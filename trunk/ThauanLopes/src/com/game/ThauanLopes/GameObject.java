@@ -6,7 +6,7 @@ import android.graphics.Rect;
 public abstract class GameObject {
 
 	public String tag;
-
+	
 	public abstract void Update();
 	
 	public abstract void Draw(Canvas canvas);

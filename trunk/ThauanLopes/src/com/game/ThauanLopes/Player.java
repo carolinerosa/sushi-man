@@ -46,7 +46,6 @@ public class Player extends GameObject {
 	{
 		//Log.i("Player", "update");
 		
-		
 		if(sprite.isFinished())
 		{
 			switch(playerState)
@@ -62,7 +61,7 @@ public class Player extends GameObject {
 				break;
 			}
 		}
-		if(!this.playerState.equals(playerState.DIED)){
+		if(isAlive()){
 			x += xVelocity;
 			if(x + this.width > Game.canvasWidth)
 			{	
@@ -73,6 +72,7 @@ public class Player extends GameObject {
 				x = 0;
 			}
 		}
+		
 		this.sprite.Update();
 
 	}
@@ -110,11 +110,11 @@ public class Player extends GameObject {
 	public void Draw(Canvas canvas)
 	{
 		
-		Rect r = null;
+		Rect r = new Rect ((int)x, Game.floor - this.height, (int)(x + this.width), Game.floor);
 		switch(this.playerState){
 		
 		case WALKING:
-			r = new Rect ((int)x, Game.floor - this.height, (int)(x + this.width), Game.floor);
+			
 		break;
 		
 		case ATTACKING:
@@ -205,11 +205,11 @@ public class Player extends GameObject {
 		this.sprite.ChangeSprite(this.attack, this.side);
 		this.playerState = playerState.ATTACKING;
 	}
+	
 	@Override
 	public void Die() {
 		
-		//Game.cemetery.add(this);
-		this.sprite.ChangeSprite(die, this.side);
+		this.sprite.ChangeSprite(die, side);
 		this.playerState = playerState.DIED;
 		
 	}
