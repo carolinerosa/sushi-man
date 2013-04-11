@@ -12,46 +12,29 @@ public class Faster extends Enemy {
 	{
 
 		this.xVelocity = 1.4f;
-		this.width = 40;
-		this.height = 42;
+		this.width = 50;
+		this.height = 50;
 		this.initialDistancePos = this.width;
-			
+		this.walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.LOOP);
+		this.attack = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.ONCE);
+		this.die = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 5, AnimationType.ONCE);
 	}
+
 	public Faster(HashSet<Enemy> inimigos)
 	{
 		super(inimigos);
 		Setup();
 		
-		// Randomize the instantiate side
-		Random random = new Random();
-		
-		// Randomize the side to be instanced.
-		int temp = random.nextInt(2);
-		if(temp == 1)
-		{
-			this.x = 0 - this.initialDistancePos;
-			this.side = side.RIGHT;
-			
-		}
-		else 
-		{ 
-			this.x = Game.canvasWidth + this.initialDistancePos;
-			xVelocity = -xVelocity;
-			this.side = side.LEFT;
-		} 
+		RandomizeSide();
 
-		
-		walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.LOOP);
-		
 		this.sprite = new Sprite();
 		sprite.Start(this.walk, this.side);
-		
-		this.sprite.turn(this.side);
 
 		this.inimigos.add(this);
 		
 		Log.i("ENEMY", "INSTANCIOU INIMIGO");
 		
-	}	
+	}
+
 
 }

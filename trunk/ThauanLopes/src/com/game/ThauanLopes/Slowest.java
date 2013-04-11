@@ -22,6 +22,10 @@ public class Slowest extends Enemy {
 			this.width = 40;
 			this.height = 20;
 			this.initialDistancePos = this.width;
+			
+			this.walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy3_walk(), 3, 5, AnimationType.LOOP);
+			this.attack = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy3_walk(), 3, 5, AnimationType.ONCE);
+			this.die = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.ONCE);
 		}
 
 		public Slowest(HashSet<Enemy> inimigos)
@@ -29,32 +33,13 @@ public class Slowest extends Enemy {
 			super(inimigos);
 			Setup();
 			
-			// Randomize the instantiate side
-			Random random = new Random();
-			
-			// Sort the side to be instanced.
-			int temp = random.nextInt(2);
-			if(temp == 1)
-			{
-				this.x = 0 - this.initialDistancePos;
-				this.side = side.RIGHT;
-			}
-			else 
-			{ 
-				this.x = Game.canvasWidth + this.initialDistancePos;
-				xVelocity = -xVelocity;
-				this.side = side.LEFT;
-			} 
+			RandomizeSide();
 
-			walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy3_walk(), 3, 2, AnimationType.LOOP);			
-			
 			this.sprite = new Sprite();
-			this.sprite.Start(walk, this.side);
-			
-			this.sprite.turn(this.side);
-			
+			sprite.Start(this.walk, this.side);
+
 			this.inimigos.add(this);
-				
+			
 			Log.i("ENEMY", "INSTANCIOU INIMIGO");
 		}
 }

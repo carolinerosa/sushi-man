@@ -133,19 +133,22 @@ public class Game extends View implements Runnable{
 		{
 			for(Enemy enemy : inimigos)
 			{
-				switch(this.player.Collision(enemy.getRect()))
-				{
-				case 1:
-						player.Attack();
-						enemy.Die();
+				if(enemy.isAlive()){
+					switch( this.player.Collision(enemy.getRect()))
+					{
+					case 1:
+							player.Attack();
+							enemy.Die();
+							break;
+					case 2:
+							enemy.Attack();
+							player.Die();
+							break;
+						
+					default:
+						
 						break;
-				case 2:
-						player.Die();
-						break;
-					
-				default:
-					
-					break;
+					}
 				}
 			}
 		}
