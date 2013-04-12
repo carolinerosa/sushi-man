@@ -1,13 +1,14 @@
 package com.game.ThauanLopes;
 
 import java.util.HashSet;
-import java.util.concurrent.ExecutionException;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -34,6 +35,10 @@ public class Game extends View implements Runnable{
 	private Player player;
 	public static Resources resources;
 	
+	private int enemiesDead;
+	
+	private Paint textEnemiesDeads;
+	
 	public static int canvasHeight;
 	public static int canvasWidth;
 
@@ -55,9 +60,16 @@ public class Game extends View implements Runnable{
 		}
 		return instance;
 	}
+	
 	public Game(Context context) 
 	{
 		super(context);
+		
+		textEnemiesDeads = new Paint();
+		textEnemiesDeads.setColor(Color.BLACK); 
+		textEnemiesDeads.setTextSize(20);
+		
+		this.setBackgroundColor(Color.WHITE);
 		
 		running = true;
 		
@@ -138,6 +150,7 @@ public class Game extends View implements Runnable{
 					{
 					case 1:
 							player.Attack();
+							enemiesDead++;
 							enemy.Die();
 							break;
 					case 2:
@@ -161,6 +174,8 @@ public class Game extends View implements Runnable{
 		super.draw(canvas);
 		
 			this.enemyManager.Update();
+			
+			canvas.drawText(""+enemiesDead, 40, 40, textEnemiesDeads);
 			
 			if(!cemetery.isEmpty())
 			{

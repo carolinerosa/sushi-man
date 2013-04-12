@@ -132,38 +132,10 @@ public class Player extends GameObject {
 		sprite.Draw(canvas,r);
 		
 	}
-	@Override
-	public boolean collision(Rect enemyRect) {
-		
-		boolean state = false;
-		Rect myRect = new Rect((int)this.x, Game.floor - this.height, (int)(x + this.width), Game.floor);
-		if(enemyRect.intersect(myRect))
-		{
-			if(enemyRect.centerX() < myRect.centerX())
-			{
-				if(this.side.equals(side.LEFT))
-				{
-					state = true;
-				}else
-				{
-					state = false;
-				}
-			}else
-			{
-				if(this.side.equals(side.RIGHT))
-				{
-					state = true;
-				}else
-				{
-					state = false;
-				}
-			}
-		}
-		
-		return state;	
-	}
 
-	public int Collision(Rect enemyRect) {
+
+	public int Collision(Rect enemyRect) 
+	{
 			int state = 0;
 
 			Rect myRect = new Rect((int)this.x, Game.floor - this.height, (int)(x + this.width), Game.floor);
@@ -200,6 +172,7 @@ public class Player extends GameObject {
 		}
 		return alive;
 	}
+
 	public void Attack()
 	{
 		this.sprite.ChangeSprite(this.attack, this.side);
@@ -217,6 +190,12 @@ public class Player extends GameObject {
 	public void Destroy()
 	{
 		this.gameObjects.remove(this);
+	}
+
+	@Override
+	public boolean collision(Rect fingersPos) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
