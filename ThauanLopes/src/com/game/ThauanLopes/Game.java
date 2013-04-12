@@ -2,6 +2,7 @@ package com.game.ThauanLopes;
 
 import java.util.HashSet;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -42,10 +43,13 @@ public class Game extends View implements Runnable{
 	public static int canvasHeight;
 	public static int canvasWidth;
 
+	private boolean isDead = false;
+	
 	private Bitmap background;
 	Background bg;
 	
 	public static int floor;
+	public GameObject reload;
 	
 	public static long deltaTime;
 	public static long lastTimeCount;
@@ -70,6 +74,8 @@ public class Game extends View implements Runnable{
 		textEnemiesDeads.setTextSize(20);
 		
 		this.setBackgroundColor(Color.WHITE);
+		
+
 		
 		running = true;
 		
@@ -99,6 +105,9 @@ public class Game extends View implements Runnable{
 		
 		bg = new Background(background ,new Rect(0,0,w,h), gameObjects);
 		player = new Player(w,h, gameObjects);
+		
+		Bitmap reloadImage = BitmapFactory.decodeResource(resources, R.drawable.reload);
+		reload = new ImageButton(reloadImage,w/2-128,h/2-128,"reload");
 	}
 	
 	public boolean onTouchEvent(MotionEvent event) 
@@ -106,8 +115,34 @@ public class Game extends View implements Runnable{
 		switch (event.getAction()) 
 		{
 			case MotionEvent.ACTION_DOWN:
-			player.Turn();
-			break;
+				
+			if(isDead)
+			{
+				int x = (int) event.getX(0);
+				int y = (int) event.getY(0);
+					
+				Rect fingersPos = new Rect(x-25,y - 25,x + 25, y + 25);
+				
+				if(reload.collision(fingersPos))
+				{
+					AudioManager audio = AudioManager.GetInstance();
+					
+					if(audio.ready == false)
+					audio.PlayAudio("cat");
+					
+					else
+						audio.resumeAudio();
+					
+					Game game = new Game(MainActivity.context);
+					Activity act = (Activity) MainActivity.context;
+					act.setContentView(game);
+				}
+			}
+			else
+			{
+				player.Turn();
+				break;
+			}
 		}
 		return super.onTouchEvent(event);
 	}
@@ -157,6 +192,8 @@ public class Game extends View implements Runnable{
 					case 2:
 							enemy.Attack();
 							player.Die();
+							isDead = true;
+							SetAlive(false);
 							break;
 						
 					default:
@@ -206,6 +243,11 @@ public class Game extends View implements Runnable{
 				enemy.Draw(canvas);
 				
 			}
+		}
+		
+		if(isDead)
+		{
+			reload.Draw(canvas);
 		}
 	}
 	

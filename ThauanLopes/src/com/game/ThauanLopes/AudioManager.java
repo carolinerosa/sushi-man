@@ -30,6 +30,7 @@ public class AudioManager {
 	
 		
 	}
+	
 	public static AudioManager GetInstance()
 	{
 	if(Instance==null)
@@ -37,18 +38,18 @@ public class AudioManager {
 		return Instance;
 		
 	}
-	public void PlayAudio(String NameAudio,MediaPlayer Audio)
-	{
-		Audio = (MediaPlayer)map.get(NameAudio);
-		Audio.start();
-	}
+
 	public void PlayAudio(String NameAudio)
 	 {
 		Audio = (MediaPlayer)map.get(NameAudio);
 		Audio.start();
 		ready = true;
 	 }
-
+	
+	public void resumeAudio()
+	{
+		Audio.start();
+	}
 	
 	public void StopAudio()
 	{
