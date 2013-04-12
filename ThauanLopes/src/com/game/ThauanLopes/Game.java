@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,7 +52,7 @@ public class Game extends View implements Runnable{
 	
 	public static int floor;
 	public GameObject reload;
-	
+	public GameObject share;
 	public static long deltaTime;
 	public static long lastTimeCount;
 	
@@ -107,7 +109,11 @@ public class Game extends View implements Runnable{
 		player = new Player(w,h, gameObjects);
 		
 		Bitmap reloadImage = BitmapFactory.decodeResource(resources, R.drawable.reload);
+		Bitmap shareImage = BitmapFactory.decodeResource(resources, R.drawable.googledocs);
+
 		reload = new ImageButton(reloadImage,w/2-128,h/2-128,"reload");
+		share = new ImageButton(shareImage,w-180,0,"docs");
+
 	}
 	
 	public boolean onTouchEvent(MotionEvent event) 
@@ -140,6 +146,18 @@ public class Game extends View implements Runnable{
 			}
 			else
 			{
+				int x = (int) event.getX(0);
+				int y = (int) event.getY(0);
+					
+				Rect fingersPos = new Rect(x-25,y - 25,x + 25, y + 25);
+				
+				if(share.collision(fingersPos))
+				{
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/1w3OuDzV1mqeQeuenY4SyODV0cX_QWe28dzsUghSQpLU/viewform"));
+					Activity act = (Activity) MainActivity.context;
+					act.startActivity(browserIntent);
+				}
+				
 				player.Turn();
 				break;
 			}
@@ -212,7 +230,7 @@ public class Game extends View implements Runnable{
 		super.draw(canvas);
 		
 			this.enemyManager.Update();
-			
+			share.Draw(canvas);
 			canvas.drawText(""+enemiesDead, 40, 40, textEnemiesDeads);
 			
 			if(!cemetery.isEmpty())
