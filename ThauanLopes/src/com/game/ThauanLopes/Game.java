@@ -75,6 +75,7 @@ public class Game extends View implements Runnable{
 		
 		this.setFocusable(true);
 		
+		
 		resources = context.getResources();
 		
 		background = BitmapFactory.decodeResource(resources,R.drawable.punch_background);
