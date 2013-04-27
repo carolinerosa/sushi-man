@@ -15,8 +15,8 @@ public class Player extends GameObject {
 	// eccentric attributes
 	public float xVelocity = (float) 0.8;
 	public PlayerState playerState;
-	public int width = 30;
-	public int height = 30;
+	public int width = 50;
+	public int height = 50;
 	
 	// intrinsic attributes
 	HashSet<GameObject> gameObjects;
@@ -24,7 +24,7 @@ public class Player extends GameObject {
 	private float x;
 	private float y;
 	private Sprite sprite;
-	private SpriteAnimationData walk = new SpriteAnimationData(BitmapStorage.getInstance().getPlayer_walk(), 3, 10, AnimationType.LOOP);
+	private SpriteAnimationData walk = new SpriteAnimationData(BitmapStorage.getInstance().getPlayer_walk(), 10, 11, AnimationType.LOOP);
 	private SpriteAnimationData attack = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy3_walk(), 3, 10, AnimationType.ONCE);
 	private SpriteAnimationData die = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 10, AnimationType.ONCE);
 	

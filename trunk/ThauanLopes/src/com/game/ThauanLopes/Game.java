@@ -122,30 +122,33 @@ public class Game extends View implements Runnable{
 		{
 			case MotionEvent.ACTION_DOWN:
 				
-			if(isDead)
-			{
-				int x = (int) event.getX(0);
-				int y = (int) event.getY(0);
-					
-				Rect fingersPos = new Rect(x-25,y - 25,x + 25, y + 25);
-				
-				if(reload.collision(fingersPos))
-				{
-					AudioManager audio = AudioManager.GetInstance();
-					
-					if(audio.ready == false)
-					audio.PlayAudio("cat");
-					
-					else
-						audio.resumeAudio();
-					
-					Game game = new Game(MainActivity.context);
-					Activity act = (Activity) MainActivity.context;
-					act.setContentView(game);
-				}
-			}
-			else
-			{
+//			if(isDead)
+//			{
+//				int x = (int) event.getX(0);
+//				int y = (int) event.getY(0);
+//					
+//				Rect fingersPos = new Rect(x-25,y - 25,x + 25, y + 25);
+//				
+////				if(reload.collision(fingersPos))
+////				{
+////					AudioManager audio = AudioManager.GetInstance();
+////					
+////					if(audio.ready == false)
+////					audio.PlayAudio("cat");
+////					
+////					else
+////						audio.resumeAudio();
+////					
+//////					Game game = new Game(MainActivity.context);
+//////					Activity act = (Activity) MainActivity.context;
+//////					Intent intent = new Intent(MainActivit, act);
+////					Game game2 = this;
+////					game2 = new Game(MainActivity.context);
+////					
+////				}
+//			}
+//			else
+//			{
 				int x = (int) event.getX(0);
 				int y = (int) event.getY(0);
 					
@@ -160,7 +163,7 @@ public class Game extends View implements Runnable{
 				
 				player.Turn();
 				break;
-			}
+			//}
 		}
 		return super.onTouchEvent(event);
 	}
@@ -203,13 +206,16 @@ public class Game extends View implements Runnable{
 					switch( this.player.Collision(enemy.getRect()))
 					{
 					case 1:
-							player.Attack();
-							enemiesDead++;
-							enemy.Die();
+							//player.Attack();
+							
+							//enemy.Die();
+							cemetery.add(enemy);
+							//Coin sushi = new Coin(this.gameObjects, enemy.x, enemy.y);
 							break;
 					case 2:
-							enemy.Attack();
-							player.Die();
+							//enemy.Attack();
+							//player.Die();
+							cemetery.add(player);
 							isDead = true;
 							SetAlive(false);
 							break;
@@ -231,27 +237,32 @@ public class Game extends View implements Runnable{
 		
 			this.enemyManager.Update();
 			share.Draw(canvas);
-			canvas.drawText(""+enemiesDead, 40, 40, textEnemiesDeads);
-			
 			if(!cemetery.isEmpty())
 			{
 				for(GameObject gb : cemetery)
 				{
 					gb.Destroy();
 					gb = null;
+					enemiesDead++;
 				}
 			}
 			cemetery.clear();		
 				
 				
-		if(!gameObjects.isEmpty())
-		{
-			for(GameObject go : gameObjects)
-			{
-				go.Draw(canvas);
-				
-			}
-		}
+//		if(!gameObjects.isEmpty())
+//		{
+//			for(GameObject go : gameObjects)
+//			{
+//				go.Draw(canvas);
+//				
+//			}
+//		}
+		if(this.bg != null)
+		this.bg.Draw(canvas);
+		
+		if(player != null)
+		player.Draw(canvas);
+		
 		
 		// draw enemies
 		if(!inimigos.isEmpty())
@@ -262,11 +273,13 @@ public class Game extends View implements Runnable{
 				
 			}
 		}
-		
+		canvas.drawText(""+enemiesDead, 40, 40, textEnemiesDeads);
 		if(isDead)
 		{
 			reload.Draw(canvas);
 		}
+		
+		
 	}
 	
 	public void SetAlive(boolean bool)
