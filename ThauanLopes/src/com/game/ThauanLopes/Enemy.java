@@ -145,9 +145,9 @@ public abstract class Enemy extends GameObject {
 	}
 	public void Die() {
 		//this.inimigos.remove(this);
-		//Game.cemetery.add(this);
-		this.sprite.ChangeSprite(this.die, this.side);
-		this.enemyState = enemyState.DIED;
+		Game.cemetery.add(this);
+//		this.sprite.ChangeSprite(this.die, this.side);
+//		this.enemyState = enemyState.DIED;
 	}
 	
 	public void Destroy()

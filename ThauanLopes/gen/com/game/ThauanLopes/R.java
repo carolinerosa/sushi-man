@@ -24,15 +24,17 @@ public final class R {
         public static final int background_game=0x7f020000;
         public static final int fim=0x7f020001;
         public static final int googledocs=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int iniciar=0x7f020004;
-        public static final int inimigo1=0x7f020005;
-        public static final int inimigo2=0x7f020006;
-        public static final int inimigo3=0x7f020007;
-        public static final int personagem=0x7f020008;
-        public static final int punch_background=0x7f020009;
-        public static final int reload=0x7f02000a;
-        public static final int sair=0x7f02000b;
+        public static final int ic_laucher=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int iniciar=0x7f020005;
+        public static final int inimigo1=0x7f020006;
+        public static final int inimigo2=0x7f020007;
+        public static final int inimigo3=0x7f020008;
+        public static final int personagem=0x7f020009;
+        public static final int punch_background=0x7f02000a;
+        public static final int reload=0x7f02000b;
+        public static final int sair=0x7f02000c;
+        public static final int sushi=0x7f02000d;
     }
     public static final class id {
         public static final int action_settings=0x7f090000;
@@ -44,9 +46,7 @@ public final class R {
         public static final int main=0x7f080000;
     }
     public static final class raw {
-        public static final int desktop=0x7f040000;
-        public static final int techhouse=0x7f040001;
-        public static final int windows_recycle=0x7f040002;
+        public static final int techhouse=0x7f040000;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;

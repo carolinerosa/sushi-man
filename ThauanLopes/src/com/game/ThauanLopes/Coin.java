@@ -2,7 +2,10 @@ package com.game.ThauanLopes;
 
 import java.util.HashSet;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class Coin extends GameObject {
@@ -10,20 +13,24 @@ public class Coin extends GameObject {
 	private Sprite sprite;
 	private int x;
 	private int y;
-	private int width;
-	private int height;
+	private int width = 10;
+	private int height = 10;
 	private Side side;
 	SpriteAnimationData stand;
-	SpriteAnimationData catched;
 	private HashSet<GameObject> gameObjects;
+	private float upSpeed = 10;
+	Bitmap sushi;
+	Paint paint = new Paint();
 	
-	public Coin(HashSet<GameObject> gameObjects)
+	private float cronometro;
+	private float lifeTime = 10;
+	
+	public Coin(HashSet<GameObject> gameObjects, float x2, float y2)
 	{
 		this.gameObjects = gameObjects;
-		side = side.LEFT;
-		sprite = new Sprite();
-		stand = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.LOOP);
-		catched = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.ONCE);
+		sushi = BitmapFactory.decodeResource(Game.resources, R.drawable.sushi);		
+		this.x = (int) x2;
+		this.y = (int) y2;
 		sprite.Start(stand, side);
 		
 		gameObjects.add(this);
@@ -32,6 +39,13 @@ public class Coin extends GameObject {
 	@Override
 	public void Update() {
 		
+		cronometro += Game.deltaTime;
+		
+		if(cronometro >= lifeTime){
+			Game.cemetery.add(this);
+		}
+		
+		this.y -= upSpeed;
 		this.sprite.Update();
 		
 	}
@@ -39,7 +53,7 @@ public class Coin extends GameObject {
 	public void Draw(Canvas canvas) {
 		
 		Rect destRect = new Rect(this.x, this.y, this.x + this.width, this.y + this.height);
-		this.sprite.Draw(canvas, destRect);
+		canvas.drawBitmap(sushi, destRect,destRect, paint);
 		
 	}
 

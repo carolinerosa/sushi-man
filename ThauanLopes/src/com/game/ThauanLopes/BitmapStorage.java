@@ -44,14 +44,26 @@ public class BitmapStorage {
 	private Bitmap enemy1_walk;
 	private Bitmap enemy2_walk;
 	private Bitmap enemy3_walk;
+	private Bitmap sushi;
 	
+	
+	
+	public Bitmap getSushi() {
+		return sushi;
+	}
+
+	public void setSushi(Bitmap sushi) {
+		this.sushi = sushi;
+	}
+
 	private BitmapStorage()
 	{
 		
 		this.enemy1_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.inimigo1);
 		this.enemy2_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.inimigo2);
 		this.enemy3_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.inimigo3);
-		this.player_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.personagem);	 
+		this.player_walk = BitmapFactory.decodeResource(Game.resources, R.drawable.personagem);
+		this.sushi = BitmapFactory.decodeResource(Game.resources, R.drawable.sushi);
 	}
 	
 	public static BitmapStorage getInstance()

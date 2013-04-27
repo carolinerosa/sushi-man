@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.view.View;
+import android.view.Window;
 
 public class MainActivity extends Activity {
 	
@@ -14,9 +15,12 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if(context==null)
-		context=this;
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		if(context == null)
+			context=this;
+		
+		
 		AudioManager audio = AudioManager.GetInstance();
 		
 		if(audio.ready == false)
@@ -30,7 +34,6 @@ public class MainActivity extends Activity {
 		
 	}
 	
-
 	@Override
 	public void onDestroy()
 	{

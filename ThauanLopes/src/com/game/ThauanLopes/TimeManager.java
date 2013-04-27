@@ -3,8 +3,8 @@ package com.game.ThauanLopes;
 public class TimeManager implements Runnable {
 
 	private Thread timeThread;
-	private double deltaTime;
-	private double lastTimeCount;
+	private long deltaTime;
+	private long lastTimeCount;
 	public TimeManager()
 	{
 		timeThread = new Thread(this);

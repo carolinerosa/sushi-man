@@ -15,9 +15,9 @@ public class Faster extends Enemy {
 		this.width = 50;
 		this.height = 50;
 		this.initialDistancePos = this.width;
-		this.walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.LOOP);
+		this.walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 5, 5, AnimationType.LOOP);
 		this.attack = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy1_walk(), 3, 5, AnimationType.ONCE);
-		this.die = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 5, AnimationType.ONCE);
+		this.die = new SpriteAnimationData(BitmapStorage.getInstance().getSushi(), 1, 1/2, AnimationType.ONCE);
 	}
 
 	public Faster(HashSet<Enemy> inimigos)

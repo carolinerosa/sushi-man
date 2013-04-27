@@ -18,12 +18,12 @@ public class Medium extends Enemy {
 	private void Setup()
 	{	
 		this.xVelocity = 1.2f;
-		this.width = 30;
-		this.height = 30;
+		this.width = 50;
+		this.height = 50;
 		this.initialDistancePos = this.width;
-		this.walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 5, AnimationType.LOOP);
+		this.walk = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 5, 5, AnimationType.LOOP);
 		this.attack = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy2_walk(), 3, 5, AnimationType.ONCE);
-		this.die = new SpriteAnimationData(BitmapStorage.getInstance().getEnemy3_walk(), 3, 5, AnimationType.ONCE);
+		this.die = new SpriteAnimationData(BitmapStorage.getInstance().getSushi(), 1, 1/2, AnimationType.ONCE);
 	}
 	public Medium(HashSet<Enemy> inimigos)
 	{
