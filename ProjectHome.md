@@ -1,0 +1,1 @@
+Sushi Man é um jogo para android. Nele o jogador deve fazer comidas típicas japonesas enfrentando frutos do mar! Polvos, peixes-espada, salmons e lulas, além de crustáceos atacam um personagem controlado por você. Faça COMIDA!
